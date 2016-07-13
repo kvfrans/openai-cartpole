@@ -50,17 +50,6 @@ def train(submit):
         env.monitor.close()
     return counter
 
-results = []
-for _ in xrange(100):
-    r = train(submit=False)
-    if r != 2000:
-        results.append(r)
-print results
 
-plt.hist(results,50,normed=1, facecolor='g', alpha=0.75)
-plt.xlabel('Episodes required to reach 200')
-plt.ylabel('Frequency')
-plt.title('Histogram of Random Search')
-plt.show()
-
-print np.sum(results) / 1000.0
+r = train(submit=False)
+print r
