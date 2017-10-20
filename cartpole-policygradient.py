@@ -20,7 +20,7 @@ def policy_gradient():
         advantages = tf.placeholder("float",[None,1])
         linear = tf.matmul(state,params)
         probabilities = tf.nn.softmax(linear)
-        good_probabilities = tf.reduce_sum(tf.mul(probabilities, actions),reduction_indices=[1])
+        good_probabilities = tf.reduce_sum(tf.multiply(probabilities, actions),reduction_indices=[1])
         eligibility = tf.log(good_probabilities) * advantages
         loss = -tf.reduce_sum(eligibility)
         optimizer = tf.train.AdamOptimizer(0.01).minimize(loss)
@@ -102,7 +102,7 @@ def run_episode(env, policy_grad, value_grad, sess):
 
 
 env = gym.make('CartPole-v0')
-env.monitor.start('cartpole-hill/', force=True)
+env = gym.wrappers.Monitor(env, 'cartpole-hill/', force=True)
 policy_grad = policy_gradient()
 value_grad = value_gradient()
 sess = tf.InteractiveSession()
@@ -118,4 +118,3 @@ for _ in xrange(1000):
     reward = run_episode(env, policy_grad, value_grad, sess)
     t += reward
 print t / 1000
-env.monitor.close()

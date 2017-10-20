@@ -16,7 +16,7 @@ def run_episode(env, parameters):
 def train(submit):
     env = gym.make('CartPole-v0')
     if submit:
-        env.monitor.start('cartpole-experiments/', force=True)
+        env = gym.wrappers.Monitor(env, 'cartpole-experiments/', force=True)
 
     counter = 0
     bestparams = None
@@ -34,12 +34,11 @@ def train(submit):
     if submit:
         for _ in xrange(100):
             run_episode(env,bestparams)
-        env.monitor.close()
 
     return counter
 
-# train an agent to submit to openai gym
-# train(submit=True)
+#train an agent to submit to openai gym
+train(submit=True)
 
 # create graphs
 results = []
