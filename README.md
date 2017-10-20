@@ -4,7 +4,7 @@ Simple reinforcement learning algorithms implemented for CartPole on OpenAI gym.
 
 This code goes along with [my post about learning CartPole](http://kvfrans.com/simple-algoritms-for-solving-cartpole/), which is inspired by [an OpenAI request for research](https://openai.com/requests-for-research/#cartpole).
 
-##Algorithms implemented
+## Algorithms implemented
 
 **Random Search**: Keep trying random weights between [-1,1] and greedily keep the best set.
 

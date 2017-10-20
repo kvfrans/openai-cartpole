@@ -19,7 +19,7 @@ def run_episode(env, parameters):
 def train(submit):
     env = gym.make('CartPole-v0')
     if submit:
-        env.monitor.start('cartpole-hill/', force=True)
+        env = gym.wrappers.Monitor(env, 'cartpole-hill/', force=True)
 
     episodes_per_update = 5
     noise_scaling = 0.1
@@ -47,7 +47,6 @@ def train(submit):
     if submit:
         for _ in xrange(100):
             run_episode(env,parameters)
-        env.monitor.close()
     return counter
 
 
