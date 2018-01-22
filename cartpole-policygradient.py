@@ -20,7 +20,7 @@ def policy_gradient():
         advantages = tf.placeholder("float",[None,1])
         linear = tf.matmul(state,params)
         probabilities = tf.nn.softmax(linear)
-        good_probabilities = tf.reduce_sum(tf.mul(probabilities, actions),reduction_indices=[1])
+        good_probabilities = tf.reduce_sum(tf.multiply(probabilities, actions),reduction_indices=[1])
         eligibility = tf.log(good_probabilities) * advantages
         loss = -tf.reduce_sum(eligibility)
         optimizer = tf.train.AdamOptimizer(0.01).minimize(loss)
